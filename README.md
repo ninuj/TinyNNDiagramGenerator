@@ -13,7 +13,7 @@ A FastAPI-powered API that generates SVG diagrams of small feedforward neural ne
 -  FastAPI-based REST API
 -  Supports bias nodes and custom layer sizes/colors
 -  Useful for teaching, debugging, or creating illustrations
-- ☁ Deployable in 1 click on [Render](https://render.com)
+-  Deployable in 1 click on [Render](https://render.com)
 
 ---
 
