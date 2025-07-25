@@ -1,0 +1,43 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+
+# Virtual environments
+.env/
+.venv/
+env/
+venv/
+ENV/
+*.env
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Compiled matplotlib figures
+*.svg
+*.png
+
+# Logs
+*.log
+
+# Dependency cache
+pip-wheel-metadata/
+*.egg-info/
+
+# Jupyter notebooks checkpoints (if any)
+.ipynb_checkpoints/
+
+# Python and Pydantic cache
+.pytest_cache/
+.cache/
+.mypy_cache/
+
+# Render deploy cache
+render.yaml
+# Ignore the .vscode folder, EXCEPT launch.json
+.vscode/*
+!.vscode/launch.json
