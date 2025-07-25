@@ -44,15 +44,7 @@ pip install -r requirements.txt
 # Run the FastAPI server
 uvicorn main:app --reload ```
 
-##  API Example : POST /generate-diagram
-```json
 
-{
-  "layer_sizes": [3, 5, 2],
-  "colors": ["red", "blue", "green"],
-  "bias_color": "gray"
-}
-```
 ## Support
 
 Feel free to open an issue or suggest improvements via pull request.
