@@ -44,7 +44,7 @@ pip install -r requirements.txt
 # Run the FastAPI server
 uvicorn main:app --reload ```
 
-
+```
 ## Support
 
 Feel free to open an issue or suggest improvements via pull request.
