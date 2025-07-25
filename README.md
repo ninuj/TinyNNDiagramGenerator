@@ -42,7 +42,7 @@ source venv/bin/activate  # or venv\Scripts\activate on Windows
 pip install -r requirements.txt
 
 # Run the FastAPI server
-uvicorn main:app --reload
+uvicorn main:app --reload ```
 
 ##  API Example : POST /generate-diagram
 ```json
@@ -53,5 +53,6 @@ uvicorn main:app --reload
   "bias_color": "gray"
 }
 ```
-##Support
+## Support
+
 Feel free to open an issue or suggest improvements via pull request.
