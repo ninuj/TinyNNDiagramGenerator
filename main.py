@@ -19,7 +19,9 @@ import os    # For file operations and temporary paths
 # ------------------------------------------------------------------------------
 # Step 1: Create FastAPI app instance
 # ------------------------------------------------------------------------------
-app = FastAPI()
+app = FastAPI(title="Tiny NN Diagram Generator API",
+    description="Generate simple feedforward neural network SVG diagrams from layer sizes.",
+    version="1.0.0")
 
 # ------------------------------------------------------------------------------
 # Step 2: Define request schema using Pydantic
@@ -145,3 +147,23 @@ async def generate_svg(input_data: NeuralNetInput):
 
     # Send back the SVG file as a downloadable response
     return FileResponse(save_path, media_type="image/svg+xml", filename=file_name)
+# ------------------------------------------------------------------------------
+# Step 5: Root GET endpoint for health check and usage info
+# ------------------------------------------------------------------------------
+
+@app.get("/")
+def read_root():
+    return {
+        "message": "Tiny NN Diagram Generator API is running!",
+        "usage": {
+            "POST /generate-diagram": {
+                "description": "Generates a neural network SVG",
+                "example_input": {
+                    "layer_sizes": [4, 6, 3],
+                    "colors": ["red", "blue", "green"],
+                    "bias_color": "gray"
+                }
+            },
+            "docs": "/docs"
+        }
+    }
