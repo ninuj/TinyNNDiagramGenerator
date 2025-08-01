@@ -5,6 +5,8 @@
 # FastAPI for web API creation
 from fastapi import FastAPI  # The main web framework
 from fastapi.responses import FileResponse  # Used to send file as API response
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 
 # Pydantic for validating request data
 from pydantic import BaseModel  # Used to define and validate request body schema
@@ -16,12 +18,16 @@ import matplotlib.pyplot as plt
 import uuid  # To generate unique IDs for each diagram
 import os    # For file operations and temporary paths
 
+
 # ------------------------------------------------------------------------------
 # Step 1: Create FastAPI app instance
 # ------------------------------------------------------------------------------
 app = FastAPI(title="Tiny NN Diagram Generator API",
     description="Generate simple feedforward neural network SVG diagrams from layer sizes.",
     version="1.0.0")
+
+# Serve static files (like example_diagram.svg) from the /static URL
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # ------------------------------------------------------------------------------
 # Step 2: Define request schema using Pydantic
@@ -151,19 +157,19 @@ async def generate_svg(input_data: NeuralNetInput):
 # Step 5: Root GET endpoint for health check and usage info
 # ------------------------------------------------------------------------------
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 def read_root():
-    return {
-        "message": "Tiny NN Diagram Generator API is running!",
-        "usage": {
-            "POST /generate-diagram": {
-                "description": "Generates a neural network SVG",
-                "example_input": {
-                    "layer_sizes": [4, 6, 3],
-                    "colors": ["red", "blue", "green"],
-                    "bias_color": "gray"
-                }
-            },
-            "docs": "/docs"
-        }
-    }
+    return """
+    <html>
+        <head>
+            <title>Tiny NN Diagram Generator</title>
+        </head>
+        <body style="text-align: center; font-family: sans-serif;">
+            <h1>Tiny Neural Network Diagram Generator</h1>
+            <p>Generate SVG diagrams of small feedforward neural networks.</p>
+            <img src="/static/example_diagram.svg" alt="Example Diagram"
+                 style="max-width: 600px; border: 1px solid #ccc; margin-top: 20px;" />
+            <p><a href="/docs">View Interactive API Docs (Swagger)</a></p>
+        </body>
+    </html>
+    """
