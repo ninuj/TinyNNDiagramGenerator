@@ -21,6 +21,9 @@ Thumbs.db
 *.svg
 *.png
 
+# But keep this one
+!static/example_diagram.svg
+
 # Logs
 *.log
 

@@ -162,14 +162,27 @@ def read_root():
     return """
     <html>
         <head>
-            <title>Tiny NN Diagram Generator</title>
+            <title>Tiny Neural Network Diagram Generator</title>
         </head>
-        <body style="text-align: center; font-family: sans-serif;">
-            <h1>Tiny Neural Network Diagram Generator</h1>
-            <p>Generate SVG diagrams of small feedforward neural networks.</p>
-            <img src="/static/example_diagram.svg" alt="Example Diagram"
-                 style="max-width: 600px; border: 1px solid #ccc; margin-top: 20px;" />
-            <p><a href="/docs">View Interactive API Docs (Swagger)</a></p>
+        <body style="font-family: sans-serif; text-align: center; padding: 2rem;">
+            <h1> Tiny NN Diagram Generator API is running!</h1>
+
+            <p>
+                Generate SVG diagrams of feedforward neural networks via <code>POST /generate-diagram</code><br>
+                <a href="/docs" style="font-weight: bold;"> Try it in Swagger UI</a>
+            </p>
+
+            <h2> Example Output</h2>
+            <img src="/static/example_diagram.svg" alt="Tiny NN Example" style="width: 500px; border: 1px solid #ccc; padding: 10px; background: #f9f9f9;" />
+
+            <p><i>(Generated using <code>{"layer_sizes": [4, 6, 3]}</code>)</i></p>
+
+            <h2> GitHub Repository</h2>
+            <p>
+                <a href="https://github.com/ninuj/TinyNNDiagramGenerator" target="_blank" style="font-size: 18px; font-weight: bold;">
+                     View this project on GitHub
+                </a>
+            </p>
         </body>
     </html>
     """
