@@ -5,7 +5,7 @@
 
 This is a simple **API** that generates SVG diagrams of small feedforward neural networks. This can be used for quick visualizations, educational tools, and experimentation.
 
-## Techstack
+## TechStack
 
 - code is in **Python**
 - API implemented using **Fast API**

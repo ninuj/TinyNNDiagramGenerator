@@ -1,0 +1,7 @@
+services:
+  - type: web                       # Deploy as a web server
+    name: fastapi-neural           # Friendly name in Render dashboard
+    env: python                    # Use Render's Python environment
+    buildCommand: pip install -r requirements.txt  # How to install dependencies
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 10000  # How to run your FastAPI app
+    plan: free                     # Use the free tier

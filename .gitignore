@@ -37,7 +37,7 @@ pip-wheel-metadata/
 .mypy_cache/
 
 # Render deploy cache
-render.yaml
+# render.yaml
 # Ignore the .vscode folder, EXCEPT launch.json
 .vscode/*
 !.vscode/launch.json
