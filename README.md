@@ -59,7 +59,9 @@ uvicorn main:app --reload
     "colors": ["red", "blue", "green"],
     "bias_color": "gray"
     }
--  Click on execute to download the svg    
+-  Click on execute 
+-  Click on the download link in the response body to download the image as an svg to your local machine
+    
 ```
 
 ## Support
