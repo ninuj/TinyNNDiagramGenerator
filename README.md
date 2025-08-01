@@ -3,7 +3,13 @@
 [![Made with FastAPI](https://img.shields.io/badge/Made%20with-FastAPI-009688?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![Deploy to Render](https://img.shields.io/badge/Deployed%20on-Render-blueviolet?style=for-the-badge&logo=render)](https://render.com)
 
-A FastAPI-powered API that generates SVG diagrams of small feedforward neural networks — perfect for quick visualisations, educational tools, and experimentation.
+
+This is a simple **API** that generates SVG diagrams of small feedforward neural networks. This can be used for quick visualizations, educational tools, and experimentation. 
+
+## Techstack
+- code is in **Python**
+- API implemented using **Fast API**
+- Hosted on **Render**
 
 ---
 
@@ -14,6 +20,10 @@ A FastAPI-powered API that generates SVG diagrams of small feedforward neural ne
 -  Supports bias nodes and custom layer sizes/colors
 -  Useful for teaching, debugging, or creating illustrations
 -  Deployable in 1 click on [Render](https://render.com)
+
+## All you need to do is :
+- input the number of nodes 
+- input the preferred colors for those nodes in each layer
 
 ---
 
@@ -44,7 +54,17 @@ pip install -r requirements.txt
 # Run the FastAPI server
 uvicorn main:app --reload
 
+# Navigate to http://127.0.0.1:8000/docs 
+- Click on try it out 
+- Paste this json below and modify your input parameters if needed
+    {
+    "layer_sizes": [4, 6, 3],
+    "colors": ["red", "blue", "green"],
+    "bias_color": "gray"
+    }
+-  Click on execute to download the svg    
 ```
+
 ## Support
 
 Feel free to open an issue or suggest improvements via pull request.
