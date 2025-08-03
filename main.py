@@ -10,6 +10,7 @@ from fastapi.staticfiles import StaticFiles
 
 # Pydantic for validating request data
 from pydantic import BaseModel  # Used to define and validate request body schema
+from models import DiagramInput, DiagramOutput  #  Import from models.py
 
 # Matplotlib for drawing the neural network
 import matplotlib.pyplot as plt
@@ -24,7 +25,19 @@ import os    # For file operations and temporary paths
 # ------------------------------------------------------------------------------
 app = FastAPI(title="Tiny NN Diagram Generator API",
     description="Generate simple feedforward neural network SVG diagrams from layer sizes.",
-    version="1.0.0")
+    version="1.0.0",
+    contact={
+        "name": "Ninu Joby",
+        "url": "https://github.com/ninuj/TinyNNDiagramGenerator",
+        "email": "ninujoby87@gmail.com",
+    },
+    license_info={
+        "name": "MIT License",
+        "url": "https://opensource.org/licenses/MIT",
+    },
+    docs_url="/docs",
+    redoc_url="/redoc" 
+    )
 
 # Serve static files (like example_diagram.svg) from the /static URL
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -135,8 +148,13 @@ def draw_dynamic_neural_net(layer_sizes,
 # Step 4: API endpoint to generate SVG and return it
 # ------------------------------------------------------------------------------
 
-@app.post("/generate-diagram")
-async def generate_svg(input_data: NeuralNetInput):
+@app.post("/generate-diagram",
+          response_model=DiagramOutput,
+          summary="Generate a NN diagram",
+          description="Generates an SVG representation of a neural network architecture.",
+          tags=["Diagram Generation"])
+
+async def generate_svg(input_data: DiagramInput):
     # Generate a unique file name using UUID
     file_name = f"neural_net_{uuid.uuid4().hex}.svg"
 
@@ -157,7 +175,7 @@ async def generate_svg(input_data: NeuralNetInput):
 # Step 5: Root GET endpoint for health check and usage info
 # ------------------------------------------------------------------------------
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse , tags=["Root"], summary="Health check", description="Returns a welcome message confirming the API is up.")
 def read_root():
     return """
     <html>
