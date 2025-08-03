@@ -9,7 +9,6 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
 # Pydantic for validating request data
-from pydantic import BaseModel  # Used to define and validate request body schema
 from models import DiagramInput, DiagramOutput  #  Import from models.py
 
 # Matplotlib for drawing the neural network
@@ -24,7 +23,7 @@ import os    # For file operations and temporary paths
 # Step 1: Create FastAPI app instance
 # ------------------------------------------------------------------------------
 app = FastAPI(title="Tiny NN Diagram Generator API",
-    description="Generate simple feedforward neural network SVG diagrams from layer sizes.",
+    description="This is a simple API that generates SVG diagrams of small feedforward neural networks from layer sizes. This can be used for quick visualizations, educational tools, and experimentation",
     version="1.0.0",
     contact={
         "name": "Ninu Joby",
@@ -42,17 +41,9 @@ app = FastAPI(title="Tiny NN Diagram Generator API",
 # Serve static files (like example_diagram.svg) from the /static URL
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# ------------------------------------------------------------------------------
-# Step 2: Define request schema using Pydantic
-# ------------------------------------------------------------------------------
-
-class NeuralNetInput(BaseModel):
-    layer_sizes: list[int]               # Required: Number of nodes in each layer (e.g., [4, 6, 3])
-    colors: list[str] = ['red', 'blue', 'green', 'purple']  # Optional: colors for each layer
-    bias_color: str = 'gray'             # Optional: color of the bias nodes
 
 # ------------------------------------------------------------------------------
-# Step 3: Drawing logic for neural network diagram
+# Step 2: Drawing logic for neural network diagram
 # ------------------------------------------------------------------------------
 
 def draw_dynamic_neural_net(layer_sizes,
@@ -145,7 +136,7 @@ def draw_dynamic_neural_net(layer_sizes,
     return save_path  # Return the saved path
 
 # ------------------------------------------------------------------------------
-# Step 4: API endpoint to generate SVG and return it
+# Step 3: API endpoint to generate SVG and return it
 # ------------------------------------------------------------------------------
 
 @app.post("/generate-diagram",
@@ -172,7 +163,7 @@ async def generate_svg(input_data: DiagramInput):
     # Send back the SVG file as a downloadable response
     return FileResponse(save_path, media_type="image/svg+xml", filename=file_name)
 # ------------------------------------------------------------------------------
-# Step 5: Root GET endpoint for health check and usage info
+# Step 4: Root GET endpoint for health check and usage info
 # ------------------------------------------------------------------------------
 
 @app.get("/", response_class=HTMLResponse , tags=["Root"], summary="Health check", description="Returns a welcome message confirming the API is up.")
